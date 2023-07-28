@@ -1,0 +1,123 @@
+'use client'
+
+import React, { useState } from 'react';
+import { validateNewGame } from '@/util/validate';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
+
+const NewGamePage = () => {
+  const [formData, setFormData] = useState({
+    gameName: '',
+    player1: null,
+    player2: null,
+    player3: null,
+    player4: null
+  });
+
+  const createGame = async () => {
+    const res = await axios.post('/api/game', formData);
+    console.log(res);
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const returnInfo = validateNewGame(formData);
+    console.log(returnInfo);
+    
+    if(!returnInfo?.isValid){
+      toast.error(returnInfo?.message as string);
+    } else {
+      toast.success(returnInfo?.message as string);
+      createGame();
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  return (
+    <div className="h-full w-full bg-pallete flex flex-col">
+      <div className="w-full mt-32 flex justify-center">
+        <h1 className="text-3xl font-bold text-black">
+          Vpiši imena igralcev in igre
+        </h1>
+      </div>
+      <form className="h-4/6 w-full flex items-base justify-center mt-6" onSubmit={handleSubmit}>
+        <div className="w-6/12 bg-pallete3 p-12">
+          <div className="w-full h-full">
+            <div className="flex flex-col">
+              <label className="text-black text-2xl font-bold">Ime igre</label>
+              <input
+                name="gameName"
+                required
+                type="text"
+                className="h-10 bg-pallet4 text-black font-bold text-2xl"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex justify-center w-full mt-6">
+              <h2 className="text-black text-2xl font-bold">Ime igralcev</h2>
+            </div>
+            <div className="flex justify-between mt-6">
+              <div className="flex flex-col">
+                <label className="text-black text-2xl font-bold">
+                  Igralec 1
+                </label>
+                <input
+                  name="player1"
+                  type="text"
+                  className="w-5/6 h-10 bg-pallet4 text-black font-bold text-2xl"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="text-black text-2xl font-bold">
+                  Igralec 2
+                </label>
+                <input
+                  name="player2"
+                  type="text"
+                  className="w-5/6 h-10 bg-pallet4 text-black font-bold text-2xl"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="flex justify-between mt-10">
+              <div className="flex flex-col">
+                <label className="text-black text-2xl font-bold">
+                  Igralec 3
+                </label>
+                <input
+                  name="player3"
+                  type="text"
+                  className="w-5/6 h-10 bg-pallet4 text-black font-bold text-2xl"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="text-black text-2xl font-bold">
+                  Igralec 4
+                </label>
+                <input
+                  name="player4"
+                  type="text"
+                  className="w-5/6 h-10 bg-pallet4 text-black font-bold text-2xl"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full flex items-end">
+            <button type='submit' className="w-full h-10 bg-pallete2 text-black font-bold text-2xl">
+              Začni igro
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default NewGamePage;

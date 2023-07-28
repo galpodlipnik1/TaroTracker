@@ -61,39 +61,52 @@ const TopBar = ({ children }: { children: React.ReactNode }) => {
             </div>
             <div className="hidden md:flex items-center justify-between w-full md:w-auto md:order-1">
               <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-              <li>
-                <a
-                  href="/"
-                  className={clsx(
-                    'block py-2 pl-3 pr-4 rounded md:bg-transparent hover:text-pallete md:p-0 text-2xl',
-                    pathname === '/' ? 'text-pallete3' : 'text-white'
-                  )}
-                >
-                  Domov
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/points"
-                  className={clsx(
-                    'block py-2 pl-3 pr-4 rounded md:p-0 hover:text-pallete border-gray-700 text-2xl',
-                    pathname === '/points' ? 'text-pallete3' : 'text-white'
-                  )}
-                >
-                  Dodaj tocke
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/leaderboard"
-                  className={clsx(
-                    'block py-2 pl-3 pr-4 rounded md:p-0 hover:text-pallete border-gray-700 text-2xl',
-                    pathname === '/leaderboard' ? 'text-pallete3' : 'text-white'
-                  )}
-                >
-                  Lestvica
-                </a>
-              </li>
+                <li>
+                  <a
+                    href="/"
+                    className={clsx(
+                      'block py-2 pl-3 pr-4 rounded md:bg-transparent hover:text-pallete md:p-0 text-2xl',
+                      pathname === '/' ? 'text-pallete3' : 'text-white'
+                    )}
+                  >
+                    Domov
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/newgame"
+                    className={clsx(
+                      'block py-2 pl-3 pr-4 rounded md:p-0 hover:text-pallete border-gray-700 text-2xl',
+                      pathname === '/newgame' ? 'text-pallete3' : 'text-white'
+                    )}
+                  >
+                    Nova igra
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/points"
+                    className={clsx(
+                      'block py-2 pl-3 pr-4 rounded md:p-0 hover:text-pallete border-gray-700 text-2xl',
+                      pathname === '/points' ? 'text-pallete3' : 'text-white'
+                    )}
+                  >
+                    Dodaj tocke
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/leaderboard"
+                    className={clsx(
+                      'block py-2 pl-3 pr-4 rounded md:p-0 hover:text-pallete border-gray-700 text-2xl',
+                      pathname === '/leaderboard'
+                        ? 'text-pallete3'
+                        : 'text-white'
+                    )}
+                  >
+                    Lestvica
+                  </a>
+                </li>
               </ul>
             </div>
             {session && session?.data?.user?.email ? (
@@ -143,6 +156,17 @@ const TopBar = ({ children }: { children: React.ReactNode }) => {
                   )}
                 >
                   Domov
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/newgame"
+                  className={clsx(
+                    'block py-2 pl-3 pr-4 rounded md:p-0 hover:text-pallete border-gray-700 text-2xl',
+                    pathname === '/newgame' ? 'text-pallete3' : 'text-white'
+                  )}
+                >
+                  Nova igra
                 </a>
               </li>
               <li>
