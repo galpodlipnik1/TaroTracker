@@ -12,6 +12,15 @@ export async function POST(request: Request) {
     return NextResponse.redirect('/auth');
   }
   try {
+    players.map((player: string) => {
+      if (player === '') {
+        const index = players.indexOf(player);
+        players.splice(index, 1);
+      }
+
+      return player;
+    });
+
     const game = await prisma.game.create({
       data: {
         ownerId: user.id,

@@ -6,6 +6,7 @@ const createPlayerScore = async (game: { id: string; players: string[] }) => {
 
   try {
     players.forEach(async (player) => {
+      if(player === '') return;
       await prisma.playerScore.create({
         data: {
           gameId: id,

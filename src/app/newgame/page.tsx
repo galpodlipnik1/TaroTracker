@@ -10,10 +10,10 @@ const NewGamePage = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     gameName: '',
-    player1: null,
-    player2: null,
-    player3: null,
-    player4: null
+    player1: '',
+    player2: '',
+    player3: '',
+    player4: ''
   });
 
   const createGame = async () => {

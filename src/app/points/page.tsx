@@ -8,12 +8,15 @@ const Points = () => {
   const router = useRouter()
   useEffect(() => {
     getActiveGame().then((res: any) => {
-      router.push(`/points/${res.id}`)
+      if(res)
+        router.push(`/points/${res.id}`)
+      else
+        router.push(`/newgame`)
     })
   }, [])
 
   return (
-    <div className='w-screen h-screen bg-pallete'>Redirecting...</div>
+    <div className='w-screen h-screen bg-pallete flex justify-center items-center text-5xl text-pallete4'>Redirecting...</div>
   )
 }
 
