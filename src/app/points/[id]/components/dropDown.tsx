@@ -13,7 +13,7 @@ const DropDown: React.FC<SelectProps> = ({
   onChange,
   options,
   disabled,
-  placeholder
+  placeholder,
 }) => {
   return (
     <div className="z-[100]">
@@ -21,10 +21,10 @@ const DropDown: React.FC<SelectProps> = ({
         <ReactSelect
           isDisabled={disabled}
           value={value}
-          onChange={(selectedOption) => onChange(selectedOption as unknown as string)}
+          onChange={(selectedOption: any) => onChange(selectedOption)}
           placeholder={placeholder}
           options={options.map((option) => ({
-            value: option,
+            value: option.replace(/\s/g, ''),
             label: option,
           })) as any}
           menuPortalTarget={document.body}

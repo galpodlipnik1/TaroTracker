@@ -9,7 +9,7 @@ const Points = () => {
   useEffect(() => {
     getActiveGame().then((res: any) => {
       if(res)
-        router.push(`/points/${res.id}`)
+        router.push(`/points/${res.id}/advanced`)
       else
         router.push(`/newgame`)
     })

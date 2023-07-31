@@ -17,6 +17,10 @@ const extraPointsOptions = [
     name: 'zadnjiKralj',
     options: ['Ne', 'Da', 'Napovedan'],
   },
+  {
+    name: 'zmagal',
+    options: ['Ne', 'Da'],
+  }
 ];
 
 export { vrstaIgreOptions, extraPointsOptions }
