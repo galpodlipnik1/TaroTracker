@@ -1,0 +1,46 @@
+import ReactSelect from 'react-select';
+
+interface SelectProps {
+  value: string;
+  onChange: (value: string) => void;
+  options: string[];
+  disabled?: boolean;
+  placeholder?: string;
+}
+
+const DropDown: React.FC<SelectProps> = ({
+  value,
+  onChange,
+  options,
+  disabled,
+  placeholder
+}) => {
+  return (
+    <div className="z-[100]">
+      <div className="mt-2">
+        <ReactSelect
+          isDisabled={disabled}
+          value={value}
+          onChange={(selectedOption) => onChange(selectedOption as unknown as string)}
+          placeholder={placeholder}
+          options={options.map((option) => ({
+            value: option,
+            label: option,
+          })) as any}
+          menuPortalTarget={document.body}
+          styles={{
+            menuPortal: (base) => ({
+              ...base,
+              zIndex: 9999,
+            }),
+          }}
+          classNames={{
+            control: () => 'text-sm',
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default DropDown;

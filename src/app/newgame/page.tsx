@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { validateNewGame } from '@/util/validate';
+import { validateNewGame } from '@/util/validateNexGame';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
