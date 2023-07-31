@@ -14,7 +14,6 @@ export const validateNewGame = (gameData:GameData) => {
       numOfNullPlayers++;
     }
   }
-  console.log(numOfNullPlayers, gameData);
   
   if (numOfNullPlayers > 1) {
     return {

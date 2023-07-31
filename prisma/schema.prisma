@@ -21,7 +21,7 @@ model User {
   updatedAt      DateTime @updatedAt
 
   accounts Account[]
-  games    Games[]
+  games    Game[]
 }
 
 model Account {
@@ -43,7 +43,7 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Games {
+model Game {
   id        String        @id @default(auto()) @map("_id") @db.ObjectId
   ownerId   String        @db.ObjectId
   name      String
@@ -62,5 +62,5 @@ model PlayerScore {
   score      Int[]
   createdAt  DateTime @default(now())
 
-  game Games? @relation(fields: [gameId], references: [id])
+  game Game? @relation(fields: [gameId], references: [id])
 }

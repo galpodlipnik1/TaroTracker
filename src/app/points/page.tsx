@@ -1,16 +1,20 @@
-import React from 'react';
+'use client'
 
-const PointsPage = () => {
+import React, { useEffect } from 'react'
+import getActiveGame from '@/actions/getActiveGame'
+import { useRouter } from 'next/navigation'
+
+const Points = () => {
+  const router = useRouter()
+  useEffect(() => {
+    getActiveGame().then((res: any) => {
+      router.push(`/points/${res.id}`)
+    })
+  }, [])
+
   return (
-    <div className="h-full w-full bg-pallete flex">
-      <div className="w-full mt-32 flex justify-center">
-        <h1 className="text-3xl font-bold text-pallete4">
-          Vpiši za igralca, ki je igral
-        </h1>
-      </div>
-      <div></div>
-    </div>
-  );
-};
+    <div className='w-screen h-screen bg-pallete'>Redirecting...</div>
+  )
+}
 
-export default PointsPage;
+export default Points

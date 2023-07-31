@@ -1,62 +1,41 @@
 'use client'
 
-import React, { useState } from 'react';
-import { validateNewGame } from '@/util/validate';
-import { toast } from 'react-hot-toast';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import getCurrentGameInfo from '@/actions/getCurrentGameInfo';
 
-const NewGamePage = () => {
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    gameName: '',
-    player1: null,
-    player2: null,
-    player3: null,
-    player4: null
-  });
+interface GameInfo {
+  id: string;
+  ownerId: string;
+  name: string;
+  players: string[];
+  status: string;
+  createdAt: Date;
+}
 
-  const createGame = async () => {
-    const formatData = {
-      gameName: formData.gameName,
-      players: [
-        formData.player1,
-        formData.player2,
-        formData.player3,
-        formData.player4
-      ]
-    }
-    const res = await axios.post('/api/game', formatData);
+const PointsPage = ({ params }: { params: { id:string } }) => {
+  const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);
 
-    router.push(`/points/${res.data.id}`);
-  };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const returnInfo = validateNewGame(formData);
+  useEffect(() => {
+    const fetchGameInfo = async () => {
+      const gameInfo: GameInfo | null = await getCurrentGameInfo(params.id);
+      setGameInfo(gameInfo);
+    };
+    fetchGameInfo();
+  }, []);
 
-    if(!returnInfo?.isValid){
-      toast.error(returnInfo?.message as string);
-    } else {
-      createGame();
-      toast.success(returnInfo?.message as string);
-    }
-  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {};
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+
   return (
-    <div className="h-full w-full bg-pallete flex flex-col">
-      <div className="w-full mt-32 flex justify-center">
-        <h1 className="text-3xl font-bold text-black">
-          Vpiši imena igralcev in igre
+    <div className="h-full w-full bg-pallete flex">
+      <div className="w-full mt-32 flex flex-col items-center">
+        <h1 className="text-3xl font-bold text-pallete4">
+          Vpiši za igralca, ki je igral
         </h1>
-      </div>
-      <form className="h-4/6 w-full flex items-base justify-center mt-6" onSubmit={handleSubmit}>
-        <div className="md:w-6/12 bg-pallete3 p-12">
+        <p className='text-pallete4'>Ime igre: {gameInfo?.name}</p>
+        <form className="h-4/6 w-full flex items-base justify-center mt-6" onSubmit={handleSubmit}>
+        <div className="md:w-8/12 bg-pallete3 p-12">
           <div className="w-full h-full">
             <div className="flex flex-col">
               <label className="text-black text-2xl font-bold">Ime igre</label>
@@ -127,8 +106,10 @@ const NewGamePage = () => {
           </div>
         </div>
       </form>
+      </div>
+      <div></div>
     </div>
   );
 };
 
-export default NewGamePage;
+export default PointsPage;

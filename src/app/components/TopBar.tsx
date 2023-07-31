@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Placeholder, Logo } from '../assets';
+import { isMobile } from 'react-device-detect';
 import clsx from 'clsx';
 
 const TopBar = ({ children }: { children: React.ReactNode }) => {
@@ -25,8 +26,8 @@ const TopBar = ({ children }: { children: React.ReactNode }) => {
             <a href="/" className="flex items-center">
               <Image
                 className="rounded-full"
-                width={64}
-                height={64}
+                width={32}
+                height={32}
                 src={Logo}
                 alt="Icon"
               />
