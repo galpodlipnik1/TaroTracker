@@ -1,6 +1,7 @@
 import prisma from '@/lib/prismadb';
 import getCurrentUser from '@/actions/getCurrentUser';
 import { NextResponse } from 'next/server';
+import setOtherToInactive from '@/actions/setOtherToInactive';
 import createPlayerScore from '@/actions/createPlayerScore';
 
 export async function POST(request: Request) {
@@ -31,6 +32,7 @@ export async function POST(request: Request) {
     });
 
     await createPlayerScore({ id: game.id, players });
+    await setOtherToInactive(game.id);
 
     return NextResponse.json(game, { status: 201 });
   } catch (error: any) {
