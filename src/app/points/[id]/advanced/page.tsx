@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import getCurrentGameInfo from '@/actions/getCurrentGameInfo';
@@ -19,6 +19,7 @@ interface GameInfo {
   ownerId: string;
   name: string;
   players: string[];
+  scores: { id:string, playerName: string; score: number[] }[]
   status: string;
   createdAt: Date;
 }
@@ -33,6 +34,7 @@ interface FormData {
   trula: string;
   zadnjiKralj: string;
   zmagal: string;
+  izgubljeniMond: string;
 }
 
 const PointsPage = ({ params }: { params: { id: string } }) => {
@@ -51,6 +53,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
       trula: '',
       zadnjiKralj: '',
       zmagal: '',
+      izgubljeniMond: '',
     },
   });
 
@@ -62,12 +65,22 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
   const trula = watch('trula');
   const zadnjiKralj = watch('zadnjiKralj');
   const zmagal = watch('zmagal');
+  const izgubljeniMond = watch('izgubljeniMond');
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const validated = validateAddPointsAdvanced(data as SubmitData);
+    
     if (validated.isValid) {
       setIsLoading(true);
-      const calculatedPoints = calculatePointsAdvanced(data as FormatedData);
+      const calculatedPoints = calculatePointsAdvanced(validated.formatedData as FormatedData);
+      const res = await addPointsAdvanced(params.id, calculatedPoints);
+      setIsLoading(false);
+      if (res)
+        toast.success('Točke uspešno dodane!');
+      else
+        toast.error('Napaka pri dodajanju točk!');
+    } else {
+      toast.error(validated.error);
     }
   };
 
@@ -92,11 +105,18 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
         <p className="text-pallete4">Ime igre: {gameInfo?.name}</p>
         <p className="text-pallete4">Igralci: {gameInfo?.players.join(', ')}</p>
 
-        <form className="h-5/6 md:h-4/6 w-full flex items-base justify-center mt-6" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="h-5/6 md:h-4/6 w-full flex items-base justify-center mt-6"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="w-full md:w-8/12 bg-pallete3 p-12">
             <div className="w-full h-full">
               <div className="w-full flex justify-end">
-                <HiOutlineSwitchHorizontal className="inline-block text-2xl hover:cursor-pointer hover:scale-110" title='Pojdi na stran za začetnike' onClick={handleSwitch} />
+                <HiOutlineSwitchHorizontal
+                  className="inline-block text-2xl hover:cursor-pointer hover:scale-110"
+                  title="Pojdi na stran za začetnike"
+                  onClick={handleSwitch}
+                />
               </div>
               <div className="flex flex-col md:flex-row w-full md:space-x-6">
                 <div className="w-full md:w-3/6">
@@ -108,7 +128,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     placeholder="Izberi igralca"
                   />
                 </div>
-                <div className='w-full md:w-3/6'>
+                <div className="w-full md:w-3/6">
                   <DropDown
                     disabled={isLoading}
                     options={gameInfo?.players || []}
@@ -137,7 +157,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                   <input
                     className=" h-9 w-full bg-white text-black text-sm rounded-sm px-2"
                     type="number"
-                    placeholder='Št. razlike'
+                    placeholder="Št. razlike"
                     {...register('stRazlike')}
                   />
                 </div>
@@ -149,12 +169,12 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     Vsi kralji
                   </label>
                   */}
-                  <div className='w-full md:w-4/6'>
+                  <div className="w-full md:w-4/6">
                     <DropDown
                       disabled={isLoading}
                       options={extraPointsOptions[0]['options']}
                       onChange={(value) => setValue('vsiKralji', value)}
-                      placeholder='Vsi kralji?'
+                      placeholder="Vsi kralji?"
                       value={vsiKralji}
                     />
                   </div>
@@ -165,12 +185,12 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     Zadnja palčka
                   </label>
                   */}
-                  <div className='w-full md:w-4/6'>
+                  <div className="w-full md:w-4/6">
                     <DropDown
                       disabled={isLoading}
                       options={extraPointsOptions[1]['options']}
                       onChange={(value) => setValue('zadnjaPalcka', value)}
-                      placeholder='Zadnja palčka?'
+                      placeholder="Zadnja palčka?"
                       value={zadnjaPalcka}
                     />
                   </div>
@@ -183,12 +203,12 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     Trula
                   </label>
                   */}
-                  <div className='w-full md:w-4/6'>
+                  <div className="w-full md:w-4/6">
                     <DropDown
                       disabled={isLoading}
                       options={extraPointsOptions[2]['options']}
                       onChange={(value) => setValue('trula', value)}
-                      placeholder='Trula?'
+                      placeholder="Trula?"
                       value={trula}
                     />
                   </div>
@@ -199,13 +219,47 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     Zadnji kralj
                   </label>
                   */}
-                  <div className='w-full md:w-4/6'>
+                  <div className="w-full md:w-4/6">
                     <DropDown
                       disabled={isLoading}
                       options={extraPointsOptions[3]['options']}
                       onChange={(value) => setValue('zadnjiKralj', value)}
-                      placeholder='Zadnji kralj?'
+                      placeholder="Zadnji kralj?"
                       value={zadnjiKralj}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col md:flex-row w-full justify-between items-baseline">
+                <div className="flex flex-row items-baseline justify-start w-full md:w-1/2">
+                  {/*
+                    <label className="text-black font-bold text-xl mr-3">
+                      Zmagal
+                    </label>
+                    */}
+                  <div className="w-full md:w-4/6">
+                    <DropDown
+                      disabled={isLoading}
+                      options={extraPointsOptions[4]['options']}
+                      onChange={(value) => setValue('zmagal', value)}
+                      placeholder="Igralec zmagal?"
+                      value={zmagal}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-row items-baseline justify-end w-full md:w-1/2">
+                  {/*
+                    <label className="text-black font-bold text-xl mr-3">
+                      Vzet mond
+                    </label>
+                    */}
+                  <div className="w-full md:w-4/6">
+                    <DropDown
+                      disabled={isLoading}
+                      options={extraPointsOptions[5]['options']}
+                      onChange={(value) => setValue('izgubljeniMond', value)}
+                      placeholder="Igralec izgubil monda?"
+                      value={izgubljeniMond}
                     />
                   </div>
                 </div>

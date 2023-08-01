@@ -20,7 +20,11 @@ const extraPointsOptions = [
   {
     name: 'zmagal',
     options: ['Ne', 'Da'],
-  }
+  },
+  {
+    name: 'vzetMond',
+    options: ['Ne', 'Da'],
+  },
 ];
 
-export { vrstaIgreOptions, extraPointsOptions }
+export { vrstaIgreOptions, extraPointsOptions };

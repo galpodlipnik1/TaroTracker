@@ -23,10 +23,12 @@ const DropDown: React.FC<SelectProps> = ({
           value={value}
           onChange={(selectedOption: any) => onChange(selectedOption)}
           placeholder={placeholder}
-          options={options.map((option) => ({
-            value: option.replace(/\s/g, ''),
-            label: option,
-          })) as any}
+          options={
+            options.map((option) => ({
+              value: option.replace(/\s/g, ''),
+              label: option,
+            })) as any
+          }
           menuPortalTarget={document.body}
           styles={{
             menuPortal: (base) => ({

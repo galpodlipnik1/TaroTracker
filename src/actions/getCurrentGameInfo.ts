@@ -1,6 +1,6 @@
-'use server'
+'use server';
 
-import prisma from '@/lib/prismadb'
+import prisma from '@/lib/prismadb';
 
 const getCurrentGameInfo = async (gameId: string) => {
   try {
@@ -9,11 +9,12 @@ const getCurrentGameInfo = async (gameId: string) => {
       include: {
         scores: {
           select: {
+            id: true,
             playerName: true,
             score: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
 
     return gameInfo;

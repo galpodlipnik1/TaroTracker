@@ -1,4 +1,3 @@
-
 interface GameData {
   gameName: string;
   player1: string | null;
@@ -7,14 +6,14 @@ interface GameData {
   player4: string | null;
 }
 
-export const validateNewGame = (gameData:GameData) => {
+export const validateNewGame = (gameData: GameData) => {
   let numOfNullPlayers = 0;
   for (const [key, value] of Object.entries(gameData)) {
-    if (key.startsWith('p') && value === '' || value === null) {
+    if ((key.startsWith('p') && value === '') || value === null) {
       numOfNullPlayers++;
     }
   }
-  
+
   if (numOfNullPlayers > 1) {
     return {
       isValid: false,
@@ -26,4 +25,4 @@ export const validateNewGame = (gameData:GameData) => {
       message: 'Game is being created',
     };
   }
-}
+};

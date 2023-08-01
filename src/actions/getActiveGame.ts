@@ -1,7 +1,7 @@
-'use server'
+'use server';
 
-import prisma from '@/lib/prismadb'
-import getCurrentUser from './getCurrentUser'
+import prisma from '@/lib/prismadb';
+import getCurrentUser from './getCurrentUser';
 const getActiveGame = async () => {
   const user = await getCurrentUser();
 
@@ -14,12 +14,12 @@ const getActiveGame = async () => {
       where: {
         ownerId: user.id,
         status: 'active',
-      }
+      },
     });
     return game;
   } catch (error: any) {
     throw new Error(error);
   }
-}
+};
 
 export default getActiveGame;

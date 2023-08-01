@@ -5,7 +5,7 @@ import createPlayerScore from '@/actions/createPlayerScore';
 
 export async function POST(request: Request) {
   const user = await getCurrentUser();
-  
+
   const { gameName, players } = await request.json();
 
   if (!user) {
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
         name: gameName,
         players,
         status: 'active',
-      }
+      },
     });
 
     await createPlayerScore({ id: game.id, players });

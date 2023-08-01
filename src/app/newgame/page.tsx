@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { validateNewGame } from '@/util/validateNexGame';
@@ -13,7 +13,7 @@ const NewGamePage = () => {
     player1: '',
     player2: '',
     player3: '',
-    player4: ''
+    player4: '',
   });
 
   const createGame = async () => {
@@ -23,9 +23,9 @@ const NewGamePage = () => {
         formData.player1,
         formData.player2,
         formData.player3,
-        formData.player4
-      ]
-    }
+        formData.player4,
+      ],
+    };
     const res = await axios.post('/api/game', formatData);
 
     router.push(`/points/${res.data.id}`);
@@ -34,7 +34,7 @@ const NewGamePage = () => {
     e.preventDefault();
     const returnInfo = validateNewGame(formData);
 
-    if(!returnInfo?.isValid){
+    if (!returnInfo?.isValid) {
       toast.error(returnInfo?.message as string);
     } else {
       createGame();
@@ -55,7 +55,10 @@ const NewGamePage = () => {
           Vpiši imena igralcev in igre
         </h1>
       </div>
-      <form className="h-4/6 w-full flex items-base justify-center mt-6" onSubmit={handleSubmit}>
+      <form
+        className="h-4/6 w-full flex items-base justify-center mt-6"
+        onSubmit={handleSubmit}
+      >
         <div className="md:w-6/12 bg-pallete3 p-12">
           <div className="w-full h-full">
             <div className="flex flex-col">
@@ -121,7 +124,10 @@ const NewGamePage = () => {
             </div>
           </div>
           <div className="w-full flex items-end">
-            <button type='submit' className="w-full h-10 bg-pallete2 text-black font-bold text-2xl">
+            <button
+              type="submit"
+              className="w-full h-10 bg-pallete2 text-black font-bold text-2xl"
+            >
               Začni igro
             </button>
           </div>
