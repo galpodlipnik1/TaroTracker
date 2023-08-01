@@ -1,5 +1,9 @@
 import { FormatedData } from '@/types/addPointsAdvanced';
 
+const roundTo5 = (num: number) => {
+  return Math.round(num / 5) * 5;
+};
+
 export const calculatePointsAdvanced = (data: FormatedData) => {
   const { vrstaIgre, stRazlike, trula, zadnjiKralj, zadnjaPalcka, vsiKralji, zmagal, izgubljeniMond } =
     data;
@@ -43,7 +47,8 @@ export const calculatePointsAdvanced = (data: FormatedData) => {
   //! vsi kralji napovedani????????
 
   sumOfPoints += stRazlike;
-
+  sumOfPoints = roundTo5(sumOfPoints);
+  
   let soigralecPoints = sumOfPoints;
   let igralecPoints = sumOfPoints;
   if(izgubljeniMond)

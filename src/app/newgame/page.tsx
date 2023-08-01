@@ -28,7 +28,7 @@ const NewGamePage = () => {
     };
     const res = await axios.post('/api/game', formatData);
 
-    router.push(`/points/${res.data.id}`);
+    router.push(`/points/`);
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -126,7 +126,7 @@ const NewGamePage = () => {
           <div className="w-full flex items-end">
             <button
               type="submit"
-              className="w-full h-10 bg-pallete2 text-black font-bold text-2xl"
+              className="w-full h-10 bg-pallete2 text-black font-bold text-2xl rounded-md"
             >
               Začni igro
             </button>

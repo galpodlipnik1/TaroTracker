@@ -100,7 +100,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
     <div className="h-full w-full bg-pallete flex">
       <div className="w-full mt-32 flex flex-col items-center">
         <h1 className="text-3xl font-bold text-pallete4">
-          Vpiši za igralca, ki je igral
+          Vpiši za igralca, ki je igral (Napredno)
         </h1>
         <p className="text-pallete4">Ime igre: {gameInfo?.name}</p>
         <p className="text-pallete4">Igralci: {gameInfo?.players.join(', ')}</p>
@@ -268,7 +268,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
             <div className="w-full flex items-end">
               <button
                 type="submit"
-                className="w-full h-10 bg-pallete2 text-black font-bold text-2xl"
+                className="w-full h-10 bg-pallete2 text-black font-bold text-2xl rounded-md"
               >
                 Dodaj točke
               </button>
