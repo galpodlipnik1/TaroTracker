@@ -22,7 +22,7 @@ const DisplayBoard = () => {
   return (
     <div className='flex flex-col w-1/2'>
       <div className='flex flex-row justify-between'>
-        {gameInfo?.players.map((player, index) => {
+        {gameInfo?.players.map((player: string, index: number) => {
           return (
             <div key={player} className='w-1/2 flex items-center flex-col'>
               <div className='text-2xl font-bold text-pallete4'>
