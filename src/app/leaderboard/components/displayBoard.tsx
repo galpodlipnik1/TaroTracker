@@ -29,7 +29,7 @@ const DisplayBoard = () => {
                 {player}
               </div>
               <hr className='w-full border-pallete4' />
-                {gameInfo?.scores.map((scoreObj) => {
+                {gameInfo?.scores.map((scoreObj : { playerName: string, score: string[] }) => {
                   if(scoreObj.playerName === player) {
                     return (
                       <div key={scoreObj.playerName} className=' w-full flex flex-col items-center text-pallete4'>
