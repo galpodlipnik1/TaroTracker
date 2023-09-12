@@ -19,7 +19,7 @@ const TopBar = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <nav className="border-gray-200 bg-pallete2  fixed inset-x-0 z-40">
         <div className="max-w-screen flex flex-wrap items-center justify-between mx-auto p-4">
           <div className="flex items-center">
