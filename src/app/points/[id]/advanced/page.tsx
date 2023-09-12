@@ -150,7 +150,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                 </div>
                 <div className="flex flex-row items-center justify-end w-full md:w-[16.7rem] mt-3 md:mt-0">
                   <input
-                    className=" h-9 w-4/6 bg-white text-black text-sm rounded-sm px-2"
+                    className=" h-9 w-full md:w-4/6 bg-white text-black text-sm rounded-sm px-2"
                     type="number"
                     placeholder="Št. razlike"
                     {...register('stRazlike')}

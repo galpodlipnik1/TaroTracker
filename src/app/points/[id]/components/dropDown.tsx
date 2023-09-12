@@ -29,7 +29,7 @@ const DropDown: React.FC<SelectProps> = ({
               label: option,
             })) as any
           }
-          menuPortalTarget={document.body}
+          menuPortalTarget={document?.body}
           styles={{
             menuPortal: (base) => ({
               ...base,
