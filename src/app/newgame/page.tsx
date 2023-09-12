@@ -51,7 +51,7 @@ const NewGamePage = () => {
   return (
     <div className="h-full w-full bg-pallete flex flex-col">
       <div className="w-full mt-32 flex justify-center">
-        <h1 className="text-3xl font-bold text-black">
+        <h1 className="text-3xl font-bold text-pallete4">
           Vpiši imena igralcev in igre
         </h1>
       </div>

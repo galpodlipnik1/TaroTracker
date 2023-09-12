@@ -5,7 +5,6 @@ const formatData = (data: SubmitData) => {
     igralec: data.igralec.value,
     soigralec: data.soigralec.value,
     vrstaIgre: data.vrstaIgre.value,
-    zmagal: data.zmagal.value === 'Da' ? true : false,
     izgubljeniMond: data.izgubljeniMond.value === 'Da' ? true : false,
     mond: data.mond,
     palcka: data.palcka,
@@ -62,7 +61,7 @@ export const validateAddPointsBeginner = (data: SubmitData) => {
     70
   ) {
     res.isValid = false;
-    res.error = 'Število razlike mora biti med 0 in 35';
+    res.error = 'Neveljavna kombinacija kart';
   }
 
   const formatedData = formatData(data);

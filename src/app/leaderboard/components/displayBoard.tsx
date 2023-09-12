@@ -35,7 +35,7 @@ const DisplayBoard = () => {
               .filter((scoreObj) => scoreObj.playerName === player)
               .map((filteredScoreObj) => (
                 <DisplayPlayerScores
-                  key={filteredScoreObj.playerName} 
+                  key={filteredScoreObj.playerName}
                   scores={filteredScoreObj.score}
                 />
               ))}

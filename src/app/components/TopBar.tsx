@@ -196,7 +196,7 @@ const TopBar = ({ children }: { children: React.ReactNode }) => {
           </div>
         )}
       </nav>
-      <main className="h-screen w-screen">{children}</main>
+      <main className="h-full w-full">{children}</main>
     </div>
   );
 };

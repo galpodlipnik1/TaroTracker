@@ -29,7 +29,6 @@ export const calculatePointsBeginner = (
     trula,
     zadnjiKralj,
     zadnjaPalcka,
-    zmagal,
     izgubljeniMond,
   } = data;
   let sum = 0;
@@ -119,6 +118,8 @@ export const calculatePointsBeginner = (
 
   igralecPoints = roundto5(igralecPoints);
   soigralecPoints = roundto5(soigralecPoints);
+
+  const zmagal = igralecPoints > 35;
 
   if (zmagal)
     return {

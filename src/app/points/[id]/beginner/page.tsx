@@ -69,7 +69,6 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
       trula: '',
       zadnjaPalcka: '',
       zadnjiKralj: '',
-      zmagal: '',
       izgubljeniMond: '',
     },
   });
@@ -81,7 +80,6 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
   const zadnjaPalcka = watch('zadnjaPalcka');
   const trula = watch('trula');
   const zadnjiKralj = watch('zadnjiKralj');
-  const zmagal = watch('zmagal');
   const izgubljeniMond = watch('izgubljeniMond');
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -119,7 +117,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
   }, []);
 
   return (
-    <div className="h-screen w-full bg-pallete flex">
+    <div className="h-fit w-full bg-pallete flex">
       <div className="w-full mt-32 flex flex-col items-center">
         <h1 className="text-3xl font-bold text-pallete4 text-center">
           Vpiši za igralca, ki je igral (Začetnik)
@@ -128,7 +126,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
         <p className="text-pallete4">Igralci: {gameInfo?.players.join(', ')}</p>
 
         <form
-          className="h-fit md:h-5/6 w-full flex items-base justify-center mt-6"
+          className="h-fit md:h-5/6 w-full flex items-base justify-center mt-6 "
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="w-full md:w-8/12 bg-pallete3 p-12">
@@ -344,22 +342,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
               <div className="flex flex-col md:flex-row w-full justify-between items-baseline">
-                <div className="flex flex-row items-baseline justify-start w-full md:w-1/2">
-                  {/*
-                    <label className="text-black font-bold text-xl mr-3">
-                      Zmagal
-                    </label>
-                    */}
-                  <div className="w-full md:w-4/6">
-                    <DropDown
-                      disabled={isLoading}
-                      options={extraPointsOptions[4]['options']}
-                      onChange={(value) => setValue('zmagal', value)}
-                      placeholder="Igralec zmagal?"
-                      value={zmagal}
-                    />
-                  </div>
-                </div>
+                <div className="flex flex-row items-baseline justify-start w-full md:w-1/2"></div>
                 <div className="flex flex-row items-baseline justify-end w-full md:w-1/2">
                   {/*
                     <label className="text-black font-bold text-xl mr-3">
