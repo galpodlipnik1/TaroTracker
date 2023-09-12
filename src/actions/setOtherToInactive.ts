@@ -1,4 +1,4 @@
-'use server'
+'use server';
 
 import prisma from '@/lib/prismadb';
 
@@ -7,12 +7,12 @@ const setOtherToInactive = async (gameId: string) => {
     const res = await prisma.game.updateMany({
       where: {
         id: {
-          not: gameId
-        }
+          not: gameId,
+        },
       },
       data: {
-        status: 'inactive'
-      }
+        status: 'inactive',
+      },
     });
 
     return res;

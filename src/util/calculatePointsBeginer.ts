@@ -3,8 +3,8 @@ import { FormatedData } from '@/types/addPointsBeginner';
 
 const sortByPoints = (arr: string[]) => {
   const sortedArr = arr.sort((a, b) => {
-    const aPoints:any = pointsMap.get(a);
-    const bPoints:any = pointsMap.get(b);
+    const aPoints: any = pointsMap.get(a);
+    const bPoints: any = pointsMap.get(b);
 
     if (aPoints === null) return 1;
     if (bPoints === null) return -1;
@@ -19,25 +19,33 @@ const roundto5 = (num: number) => {
   return Math.round(num / 5) * 5;
 };
 
-
-export const calculatePointsBeginner = (array:string[], data:FormatedData) => {
-  const { vrstaIgre, vsiKralji, trula, zadnjiKralj, zadnjaPalcka, zmagal, izgubljeniMond } = data;
+export const calculatePointsBeginner = (
+  array: string[],
+  data: FormatedData
+) => {
+  const {
+    vrstaIgre,
+    vsiKralji,
+    trula,
+    zadnjiKralj,
+    zadnjaPalcka,
+    zmagal,
+    izgubljeniMond,
+  } = data;
   let sum = 0;
   const sortedTest = sortByPoints(array);
-  
-  
+
   const length = sortedTest.length;
-  
+
   for (let i = 0; i < length; i += 3) {
-    
-    const firstPoint:any = pointsMap.get(sortedTest[i]);
-    const secondPoint:any = pointsMap.get(sortedTest[i + 1]);
-    const thirdPoint:any = pointsMap.get(sortedTest[i + 2]);
-    
+    const firstPoint: any = pointsMap.get(sortedTest[i]);
+    const secondPoint: any = pointsMap.get(sortedTest[i + 1]);
+    const thirdPoint: any = pointsMap.get(sortedTest[i + 2]);
+
     let numOfNulls = [firstPoint, secondPoint, thirdPoint].filter(
       (el) => el === null
     ).length;
-    
+
     if (secondPoint === undefined) {
       break;
     } else if (thirdPoint === undefined) {
@@ -107,14 +115,19 @@ export const calculatePointsBeginner = (array:string[], data:FormatedData) => {
   let igralecPoints = sum;
   let soigralecPoints = sum;
 
-  if(izgubljeniMond)
-    igralecPoints = sum - 25;
-  
+  if (izgubljeniMond) igralecPoints = sum - 25;
+
   igralecPoints = roundto5(igralecPoints);
   soigralecPoints = roundto5(soigralecPoints);
 
   if (zmagal)
-    return { igralec:{ name:data.igralec, points:igralecPoints }, soigralec:{ name:data.soigralec, points:soigralecPoints }};
+    return {
+      igralec: { name: data.igralec, points: igralecPoints },
+      soigralec: { name: data.soigralec, points: soigralecPoints },
+    };
   else
-    return { igralec:{ name:data.igralec, points:-igralecPoints }, soigralec:{ name:data.soigralec, points:-soigralecPoints }};
+    return {
+      igralec: { name: data.igralec, points: -igralecPoints },
+      soigralec: { name: data.soigralec, points: -soigralecPoints },
+    };
 };

@@ -9,54 +9,58 @@ interface GameInfo {
   ownerId: string;
   name: string;
   players: string[];
-  scores: { id: string, playerName: string; score: number[] }[]
+  scores: { id: string; playerName: string; score: number[] }[];
   status: string;
   createdAt: Date;
 }
 
-export const addPointsBeginner = async (id: string, data:PointsData) => {
+export const addPointsBeginner = async (id: string, data: PointsData) => {
   const { igralec, soigralec } = data;
 
   const gameInfo = await getCurrentGameInfo(id);
 
-  if(!gameInfo)
-    throw new Error('Game not found');
+  if (!gameInfo) throw new Error('Game not found');
 
-  const igralecScores = gameInfo.scores.find((player) => player.playerName === igralec.name);
-  const soigralecScores = gameInfo.scores.find((player) => player.playerName === soigralec.name);
-  
-  if(!igralecScores || !soigralecScores)
+  const igralecScores = gameInfo.scores.find(
+    (player) => player.playerName === igralec.name
+  );
+  const soigralecScores = gameInfo.scores.find(
+    (player) => player.playerName === soigralec.name
+  );
+
+  if (!igralecScores || !soigralecScores)
     throw new Error('Something went wrong');
-  
-  const newIgralecScore = igralecScores.score[igralecScores.score.length - 1] + igralec.points;
-  const newSoigralecScore = soigralecScores.score[soigralecScores.score.length - 1] + soigralec.points; 
+
+  const newIgralecScore =
+    igralecScores.score[igralecScores.score.length - 1] + igralec.points;
+  const newSoigralecScore =
+    soigralecScores.score[soigralecScores.score.length - 1] + soigralec.points;
 
   try {
     const resIgralec = await prisma.playerScore.update({
       where: {
-        id: igralecScores.id
+        id: igralecScores.id,
       },
       data: {
         score: {
-          push: newIgralecScore
-        }
-      }
+          push: newIgralecScore,
+        },
+      },
     });
 
     const resSoigralec = await prisma.playerScore.update({
       where: {
-        id: soigralecScores.id
+        id: soigralecScores.id,
       },
       data: {
         score: {
-          push: newSoigralecScore
-        }
-      }
+          push: newSoigralecScore,
+        },
+      },
     });
-    
+
     return { resIgralec, resSoigralec };
-  } catch (error:any) {
+  } catch (error: any) {
     throw new Error(error.message);
   }
-
-}
+};

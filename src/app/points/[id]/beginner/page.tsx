@@ -20,7 +20,7 @@ interface GameInfo {
   ownerId: string;
   name: string;
   players: string[];
-  scores: { id:string, playerName: string; score: number[] }[]
+  scores: { id: string; playerName: string; score: number[] }[];
   status: string;
   createdAt: Date;
 }
@@ -83,23 +83,24 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
   const zadnjiKralj = watch('zadnjiKralj');
   const zmagal = watch('zmagal');
   const izgubljeniMond = watch('izgubljeniMond');
-  
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    
     const validated = validateAddPointsBeginner(data as SubmitData);
-    
+
     if (validated.isValid) {
       setIsLoading(true);
-      const transformedData = transformData(validated.formatedData as FormatedData)
-      const calculatedPoints = calculatePointsBeginner(transformedData, validated.formatedData as FormatedData);
-      
+      const transformedData = transformData(
+        validated.formatedData as FormatedData
+      );
+      const calculatedPoints = calculatePointsBeginner(
+        transformedData,
+        validated.formatedData as FormatedData
+      );
+
       const res = await addPointsBeginner(params.id, calculatedPoints);
       setIsLoading(false);
-      if (res)
-        toast.success('Točke uspešno dodane!');
-      else
-        toast.error('Napaka pri dodajanju točk!');
+      if (res) toast.success('Točke uspešno dodane!');
+      else toast.error('Napaka pri dodajanju točk!');
     } else {
       toast.error(validated.error);
     }
@@ -170,7 +171,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                   />
                 </div>
                 <div className="flex flex-row items-center justify-end w-full md:w-1/2 space-x-5">
-                  <div className='flex flex-row items-center'>
+                  <div className="flex flex-row items-center">
                     <label className="text-black font-bold text-xl mr-2">
                       Palčka?
                     </label>
@@ -180,7 +181,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                       {...register('palcka')}
                     />
                   </div>
-                  <div className='flex flex-row items-center'>
+                  <div className="flex flex-row items-center">
                     <label className="text-black font-bold text-xl mr-2">
                       Mond?
                     </label>
@@ -190,7 +191,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                       {...register('mond')}
                     />
                   </div>
-                  <div className='flex flex-row items-center'>
+                  <div className="flex flex-row items-center">
                     <label className="text-black font-bold text-xl mr-2">
                       Škis?
                     </label>

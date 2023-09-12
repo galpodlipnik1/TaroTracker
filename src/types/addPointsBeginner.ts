@@ -1,4 +1,3 @@
-
 export interface FormatedData {
   igralec: string;
   soigralec: string;

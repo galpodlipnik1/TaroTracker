@@ -1,8 +1,7 @@
-
-interface Score {
+export interface Score {
   id: string;
   playerName: string;
-  score: number;
+  score: number[];
 }
 
 export interface GameInfo {

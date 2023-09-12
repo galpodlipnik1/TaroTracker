@@ -19,7 +19,7 @@ interface GameInfo {
   ownerId: string;
   name: string;
   players: string[];
-  scores: { id:string, playerName: string; score: number[] }[]
+  scores: { id: string; playerName: string; score: number[] }[];
   status: string;
   createdAt: Date;
 }
@@ -69,16 +69,16 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const validated = validateAddPointsAdvanced(data as SubmitData);
-    
+
     if (validated.isValid) {
       setIsLoading(true);
-      const calculatedPoints = calculatePointsAdvanced(validated.formatedData as FormatedData);
+      const calculatedPoints = calculatePointsAdvanced(
+        validated.formatedData as FormatedData
+      );
       const res = await addPointsAdvanced(params.id, calculatedPoints);
       setIsLoading(false);
-      if (res)
-        toast.success('Točke uspešno dodane!');
-      else
-        toast.error('Napaka pri dodajanju točk!');
+      if (res) toast.success('Točke uspešno dodane!');
+      else toast.error('Napaka pri dodajanju točk!');
     } else {
       toast.error(validated.error);
     }

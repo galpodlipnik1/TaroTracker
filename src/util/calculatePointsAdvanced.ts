@@ -5,10 +5,18 @@ const roundTo5 = (num: number) => {
 };
 
 export const calculatePointsAdvanced = (data: FormatedData) => {
-  const { vrstaIgre, stRazlike, trula, zadnjiKralj, zadnjaPalcka, vsiKralji, zmagal, izgubljeniMond } =
-    data;
+  const {
+    vrstaIgre,
+    stRazlike,
+    trula,
+    zadnjiKralj,
+    zadnjaPalcka,
+    vsiKralji,
+    zmagal,
+    izgubljeniMond,
+  } = data;
   let sumOfPoints = 0;
-  
+
   switch (vrstaIgre) {
     case 'v1':
       sumOfPoints += 30;
@@ -48,14 +56,19 @@ export const calculatePointsAdvanced = (data: FormatedData) => {
 
   sumOfPoints += stRazlike;
   sumOfPoints = roundTo5(sumOfPoints);
-  
+
   let soigralecPoints = sumOfPoints;
   let igralecPoints = sumOfPoints;
-  if(izgubljeniMond)
-    igralecPoints = sumOfPoints - 25;
-  
+  if (izgubljeniMond) igralecPoints = sumOfPoints - 25;
+
   if (zmagal)
-    return { igralec:{ name:data.igralec, points:igralecPoints }, soigralec:{ name:data.soigralec, points:soigralecPoints }};
+    return {
+      igralec: { name: data.igralec, points: igralecPoints },
+      soigralec: { name: data.soigralec, points: soigralecPoints },
+    };
   else
-    return { igralec:{ name:data.igralec, points:-igralecPoints }, soigralec:{ name:data.soigralec, points:-soigralecPoints }};
+    return {
+      igralec: { name: data.igralec, points: -igralecPoints },
+      soigralec: { name: data.soigralec, points: -soigralecPoints },
+    };
 };

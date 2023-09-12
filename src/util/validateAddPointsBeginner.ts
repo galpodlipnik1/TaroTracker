@@ -1,4 +1,4 @@
-import { SubmitData } from "@/types/addPointsBeginner";
+import { SubmitData } from '@/types/addPointsBeginner';
 
 const formatData = (data: SubmitData) => {
   const formatedData = {
@@ -52,7 +52,15 @@ export const validateAddPointsBeginner = (data: SubmitData) => {
     res.error = 'Igralec in soigralec ne moreta biti enaka';
   }
 
-  if (Number(data.stKraljev) + Number(data.stDam) + Number(data.stKavalov) + Number(data.stPobov) + Number(data.stTarokov) + Number(data.stPlatelcev) > 70) {
+  if (
+    Number(data.stKraljev) +
+      Number(data.stDam) +
+      Number(data.stKavalov) +
+      Number(data.stPobov) +
+      Number(data.stTarokov) +
+      Number(data.stPlatelcev) >
+    70
+  ) {
     res.isValid = false;
     res.error = 'Število razlike mora biti med 0 in 35';
   }
