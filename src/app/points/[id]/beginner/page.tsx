@@ -119,7 +119,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
   }, []);
 
   return (
-    <div className="h-full w-full bg-pallete flex">
+    <div className="h-fit w-full bg-pallete flex">
       <div className="w-full mt-32 flex flex-col items-center">
         <h1 className="text-3xl font-bold text-pallete4 text-center">
           Vpiši za igralca, ki je igral (Začetnik)
@@ -204,7 +204,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
               <div className="flex flex-col md:flex-row w-full justify-between items-center mt-4 space-y-2">
-                <div className="flex flex-row items-center justify-end md:justify-start w-full md:w-1/2">
+                <div className="flex flex-row items-center justify-between md:justify-start w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. kraljev
                   </label>
@@ -215,7 +215,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     {...register('stKraljev')}
                   />
                 </div>
-                <div className="flex flex-row items-baseline justify-end w-full md:w-1/2">
+                <div className="flex flex-row items-baseline justify-between w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. dam
                   </label>
@@ -228,7 +228,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
               <div className="flex flex-col md:flex-row w-full justify-between items-baseline mt-4 space-y-2">
-                <div className="flex flex-row items-baseline justify-end md:justify-start w-full md:w-1/2">
+                <div className="flex flex-row items-baseline justify-between md:justify-start w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. kavalov
                   </label>
@@ -239,7 +239,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     {...register('stKavalov')}
                   />
                 </div>
-                <div className="flex flex-row items-baseline justify-end w-full md:w-1/2">
+                <div className="flex flex-row items-baseline justify-between w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. pobov
                   </label>
@@ -252,7 +252,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
               <div className="flex flex-col md:flex-row w-full justify-between items-baseline mt-4 space-y-2">
-                <div className="flex flex-row items-baseline justify-end md:justify-start w-full md:w-1/2">
+                <div className="flex flex-row items-baseline justify-between md:justify-start w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. tarokov
                   </label>
@@ -263,7 +263,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     {...register('stTarokov')}
                   />
                 </div>
-                <div className="flex flex-row items-baseline justify-end w-full md:w-1/2">
+                <div className="flex flex-row items-baseline justify-between w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. platelcev
                   </label>

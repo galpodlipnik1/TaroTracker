@@ -99,7 +99,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
   return (
     <div className="h-full w-full bg-pallete flex">
       <div className="w-full mt-32 flex flex-col items-center">
-        <h1 className="text-3xl font-bold text-pallete4">
+        <h1 className="text-3xl font-bold text-pallete4 text-center">
           Vpiši za igralca, ki je igral (Napredno)
         </h1>
         <p className="text-pallete4">Ime igre: {gameInfo?.name}</p>
