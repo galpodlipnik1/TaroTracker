@@ -128,7 +128,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
         <p className="text-pallete4">Igralci: {gameInfo?.players.join(', ')}</p>
 
         <form
-          className="h-[105vh] md:h-5/6 w-full flex items-base justify-center mt-6"
+          className="h-fit md:h-5/6 w-full flex items-base justify-center mt-6"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="w-full md:w-8/12 bg-pallete3 p-12">

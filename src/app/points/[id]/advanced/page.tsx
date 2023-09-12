@@ -106,7 +106,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
         <p className="text-pallete4">Igralci: {gameInfo?.players.join(', ')}</p>
 
         <form
-          className="h-5/6 md:h-4/6 w-full flex items-base justify-center mt-6"
+          className="h-fit md:h-4/6 w-full flex items-base justify-center mt-6"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="w-full md:w-8/12 bg-pallete3 p-12">
@@ -148,14 +148,9 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     placeholder="Izberi vrsto igre"
                   />
                 </div>
-                <div className="flex flex-row items-center w-full md:w-[16.7rem] mt-3 md:mt-0">
-                  {/*
-                  <label className="text-black font-bold text-xl">
-                    Št. razlike
-                  </label>
-                  */}
+                <div className="flex flex-row items-center justify-end w-full md:w-[16.7rem] mt-3 md:mt-0">
                   <input
-                    className=" h-9 w-full bg-white text-black text-sm rounded-sm px-2"
+                    className=" h-9 w-4/6 bg-white text-black text-sm rounded-sm px-2"
                     type="number"
                     placeholder="Št. razlike"
                     {...register('stRazlike')}
