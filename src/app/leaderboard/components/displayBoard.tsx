@@ -13,12 +13,13 @@ const DisplayPlayerScores = ({ scores }: { scores: number[] }) => (
   </div>
 );
 
-const DisplayBoard = () => {
+const DisplayBoard = ({ parentCallback }: { parentCallback: Function }) => {
   const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getActiveGame();
+      parentCallback(data?.name);
       setGameInfo(data);
     };
     fetchData();

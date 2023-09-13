@@ -1,6 +1,7 @@
 import ReactSelect from 'react-select';
 
 interface SelectProps {
+  required?: boolean;
   value: string;
   onChange: (value: string) => void;
   options: string[];
@@ -9,6 +10,7 @@ interface SelectProps {
 }
 
 const DropDown: React.FC<SelectProps> = ({
+  required,
   value,
   onChange,
   options,
@@ -19,6 +21,7 @@ const DropDown: React.FC<SelectProps> = ({
     <div className="z-[100]">
       <div className="mt-2">
         <ReactSelect
+          required={required}
           isDisabled={disabled}
           value={value}
           onChange={(selectedOption: any) => onChange(selectedOption)}

@@ -202,7 +202,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
               <div className="flex flex-col md:flex-row w-full justify-between items-center mt-4 space-y-2">
-                <div className="flex flex-row items-center justify-between md:justify-start w-full md:w-1/2">
+                <div className="flex flex-row items-center justify-between mr-3 w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. kraljev
                   </label>
@@ -226,7 +226,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
               <div className="flex flex-col md:flex-row w-full justify-between items-baseline mt-4 space-y-2">
-                <div className="flex flex-row items-baseline justify-between md:justify-start w-full md:w-1/2">
+                <div className="flex flex-row items-baseline justify-between mr-3 w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. kavalov
                   </label>
@@ -250,7 +250,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                 </div>
               </div>
               <div className="flex flex-col md:flex-row w-full justify-between items-baseline mt-4 space-y-2">
-                <div className="flex flex-row items-baseline justify-between md:justify-start w-full md:w-1/2">
+                <div className="flex flex-row items-baseline justify-between mr-3 w-full md:w-1/2">
                   <label className="text-black font-bold text-xl mr-3">
                     Št. tarokov
                   </label>

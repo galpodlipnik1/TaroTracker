@@ -17,6 +17,8 @@ export const calculatePointsAdvanced = (data: FormatedData) => {
   } = data;
   let sumOfPoints = 0;
 
+  if (data.igralec === '') throw new Error('Igralec mora biti izbran');
+
   switch (vrstaIgre) {
     case 'v1':
       sumOfPoints += 30;
@@ -38,9 +40,9 @@ export const calculatePointsAdvanced = (data: FormatedData) => {
   }
 
   if (zadnjiKralj.napovedan) {
-    sumOfPoints += 10;
-  } else if (zadnjiKralj.type) {
     sumOfPoints += 20;
+  } else if (zadnjiKralj.type) {
+    sumOfPoints += 10;
   }
 
   if (zadnjaPalcka.napovedana) {
@@ -59,16 +61,32 @@ export const calculatePointsAdvanced = (data: FormatedData) => {
 
   let soigralecPoints = sumOfPoints;
   let igralecPoints = sumOfPoints;
-  if (izgubljeniMond) igralecPoints = sumOfPoints - 25;
+  if (izgubljeniMond && zmagal) igralecPoints = sumOfPoints - 25;
+  if (izgubljeniMond && !zmagal) igralecPoints = sumOfPoints + 25;
 
-  if (zmagal)
-    return {
-      igralec: { name: data.igralec, points: igralecPoints },
-      soigralec: { name: data.soigralec, points: soigralecPoints },
-    };
-  else
-    return {
-      igralec: { name: data.igralec, points: -igralecPoints },
-      soigralec: { name: data.soigralec, points: -soigralecPoints },
-    };
+  if (zmagal) {
+    if (data.soigralec === '')
+      return {
+        igralec: { name: data.igralec, points: igralecPoints },
+        soigralec: null,
+      };
+    else {
+      return {
+        igralec: { name: data.igralec, points: igralecPoints },
+        soigralec: { name: data.soigralec, points: soigralecPoints },
+      };
+    }
+  } else {
+    if (data.soigralec === '')
+      return {
+        igralec: { name: data.igralec, points: -igralecPoints },
+        soigralec: null,
+      };
+    else {
+      return {
+        igralec: { name: data.igralec, points: -igralecPoints },
+        soigralec: { name: data.soigralec, points: -soigralecPoints },
+      };
+    }
+  }
 };

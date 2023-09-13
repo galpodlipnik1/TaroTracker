@@ -26,5 +26,5 @@ export interface FormatedData {
 
 export interface PointsData {
   igralec: { name: string; points: number };
-  soigralec: { name: string; points: number };
+  soigralec: { name: string; points: number } | null;
 }

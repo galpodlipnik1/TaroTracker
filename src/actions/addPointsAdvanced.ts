@@ -24,16 +24,23 @@ export const addPointsAdvanced = async (id: string, data: PointsData) => {
   const igralecScores = gameInfo.scores.find(
     (player) => player.playerName === igralec.name
   );
-  const soigralecScores = gameInfo.scores.find(
-    (player) => player.playerName === soigralec.name
-  );
-  if (!igralecScores || !soigralecScores)
-    throw new Error('Something went wrong');
+  let soigralecScores;
+
+  if (soigralec) {
+    soigralecScores = gameInfo.scores.find(
+      (player) => player.playerName === soigralec?.name
+    );
+  }
+  if (!igralecScores) throw new Error('Something went wrong');
   const newIgralecScore =
     igralecScores.score[igralecScores.score.length - 1] + igralec.points;
-  const newSoigralecScore =
-    soigralecScores.score[soigralecScores.score.length - 1] + soigralec.points;
 
+  let newSoigralecScore;
+  if (soigralec && soigralecScores) {
+    newSoigralecScore =
+      soigralecScores.score[soigralecScores.score.length - 1] +
+      soigralec.points;
+  }
   try {
     const resIgralec = await prisma.playerScore.update({
       where: {
@@ -45,17 +52,19 @@ export const addPointsAdvanced = async (id: string, data: PointsData) => {
         },
       },
     });
-    const resSoigralec = await prisma.playerScore.update({
-      where: {
-        id: soigralecScores.id,
-      },
-      data: {
-        score: {
-          push: newSoigralecScore,
+    let resSoigralec;
+    if (soigralec && soigralecScores) {
+      resSoigralec = await prisma.playerScore.update({
+        where: {
+          id: soigralecScores.id,
         },
-      },
-    });
-
+        data: {
+          score: {
+            push: newSoigralecScore,
+          },
+        },
+      });
+    }
     return { resIgralec, resSoigralec };
   } catch (error: any) {
     throw new Error(error);

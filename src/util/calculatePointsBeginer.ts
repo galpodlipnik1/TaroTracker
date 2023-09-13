@@ -113,22 +113,38 @@ export const calculatePointsBeginner = (
 
   let igralecPoints = sum;
   let soigralecPoints = sum;
+  const zmagal = roundto5(igralecPoints) > 35;
 
-  if (izgubljeniMond) igralecPoints = sum - 25;
+  if (izgubljeniMond && zmagal) igralecPoints = sum - 25;
+  if (izgubljeniMond && !zmagal) igralecPoints = sum + 25;
 
   igralecPoints = roundto5(igralecPoints);
   soigralecPoints = roundto5(soigralecPoints);
 
-  const zmagal = igralecPoints > 35;
 
-  if (zmagal)
-    return {
-      igralec: { name: data.igralec, points: igralecPoints },
-      soigralec: { name: data.soigralec, points: soigralecPoints },
-    };
-  else
-    return {
-      igralec: { name: data.igralec, points: -igralecPoints },
-      soigralec: { name: data.soigralec, points: -soigralecPoints },
-    };
+  if (zmagal) {
+    if (data.soigralec === '')
+      return {
+        igralec: { name: data.igralec, points: igralecPoints },
+        soigralec: null,
+      };
+    else {
+      return {
+        igralec: { name: data.igralec, points: igralecPoints },
+        soigralec: { name: data.soigralec, points: soigralecPoints },
+      };
+    }
+  } else {
+    if (data.soigralec === '')
+      return {
+        igralec: { name: data.igralec, points: -igralecPoints },
+        soigralec: null,
+      };
+    else {
+      return {
+        igralec: { name: data.igralec, points: -igralecPoints },
+        soigralec: { name: data.soigralec, points: -soigralecPoints },
+      };
+    }
+  }
 };
