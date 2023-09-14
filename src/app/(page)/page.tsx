@@ -42,10 +42,10 @@ const LandingPage = () => {
             } duration-500 space-y-2 mt-8`}
           >
             <Card className="w-full md:w-5/12 h-7/12">
-              <CardHeader className='px-4'>
+              <CardHeader className="px-4">
                 <CardTitle>What is TaroTrack?</CardTitle>
               </CardHeader>
-              <CardContent className='px-4'>
+              <CardContent className="px-4">
                 <CardDescription>
                   TaroTrack is a web application that allows you to track your
                   tarok game scores.
@@ -53,10 +53,10 @@ const LandingPage = () => {
               </CardContent>
             </Card>
             <Card className="w-full md:w-5/12 h-7/12">
-              <CardHeader className='px-4'>
+              <CardHeader className="px-4">
                 <CardTitle>How does it work?</CardTitle>
               </CardHeader>
-              <CardContent className='px-4'>
+              <CardContent className="px-4">
                 <CardDescription>
                   TaroTracker is built with NextJS, Prisma, and TailwindCSS and
                   using MongoDb as a database. The application is hosted on
@@ -65,7 +65,10 @@ const LandingPage = () => {
               </CardContent>
               <CardFooter>
                 <div className="w-full flex justify-end">
-                  <button className="bg-pallete3 text-white rounded-md px-4 py-2 hover:bg-pallete4 hover:text-pallete1" onClick={() => location.href = 'https://nextjs.org/'}>
+                  <button
+                    className="bg-pallete3 text-white rounded-md px-4 py-2 hover:bg-pallete4 hover:text-pallete1"
+                    onClick={() => (location.href = 'https://nextjs.org/')}
+                  >
                     Learn more
                   </button>
                 </div>
@@ -77,11 +80,11 @@ const LandingPage = () => {
               isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-2'
             } duration-500 space-y-2 my-8`}
           >
-            <Card className="w-full md:w-5/12 h-7/12 bg-white"> 
-              <CardHeader className='px-4'>
+            <Card className="w-full md:w-5/12 h-7/12 bg-white">
+              <CardHeader className="px-4">
                 <CardTitle>How can I contribute?</CardTitle>
               </CardHeader>
-              <CardContent className='px-4'>
+              <CardContent className="px-4">
                 <CardDescription>
                   taro track is currently not an open source project at the
                   moment but that might change in the future.
@@ -90,10 +93,10 @@ const LandingPage = () => {
             </Card>
 
             <Card className="w-full md:w-5/12 h-58">
-              <CardHeader className='px-4'>
+              <CardHeader className="px-4">
                 <CardTitle>Who made this?</CardTitle>
               </CardHeader>
-              <CardContent className='px-4 py-0'>
+              <CardContent className="px-4 py-0">
                 <CardDescription>
                   TaroTrack was made by a developer named Gal who wanted to
                   simplify tracking their tarok game scores for beginers and
@@ -102,7 +105,12 @@ const LandingPage = () => {
               </CardContent>
               <CardFooter>
                 <div className="w-full flex justify-end">
-                  <button className="bg-pallete3 text-white rounded-md px-4 py-2 hover:bg-pallete4 hover:text-pallete1" onClick={() => location.href='https://me.galpodlipnik.com/'}>
+                  <button
+                    className="bg-pallete3 text-white rounded-md px-4 py-2 hover:bg-pallete4 hover:text-pallete1"
+                    onClick={() =>
+                      (location.href = 'https://me.galpodlipnik.com/')
+                    }
+                  >
                     Personal Website
                   </button>
                 </div>

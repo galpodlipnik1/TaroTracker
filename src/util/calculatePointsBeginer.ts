@@ -31,8 +31,9 @@ export const calculatePointsBeginner = (
     zadnjaPalcka,
     izgubljeniMond,
   } = data;
-  let sum = 0;
+  let sumOfSpecial = 0;
   const sortedTest = sortByPoints(array);
+  let cardPoints = 0;
 
   const length = sortedTest.length;
 
@@ -48,7 +49,7 @@ export const calculatePointsBeginner = (
     if (secondPoint === undefined) {
       break;
     } else if (thirdPoint === undefined) {
-      sum += 1;
+      cardPoints += 1;
       break;
     }
 
@@ -56,18 +57,18 @@ export const calculatePointsBeginner = (
     switch (numOfNulls) {
       case 0:
         tempSum = firstPoint + secondPoint + thirdPoint - 2;
-        sum += tempSum;
+        cardPoints += tempSum;
         break;
       case 1:
         tempSum = firstPoint + secondPoint + thirdPoint - 1;
-        sum += tempSum;
+        cardPoints += tempSum;
         break;
       case 2:
         tempSum = firstPoint + secondPoint + thirdPoint;
-        sum += tempSum;
+        cardPoints += tempSum;
         break;
       case 3:
-        sum += 1;
+        cardPoints += 1;
         break;
       default:
         throw new Error('Something went wrong');
@@ -76,51 +77,52 @@ export const calculatePointsBeginner = (
 
   switch (vrstaIgre) {
     case 'v1':
-      sum += 30;
+      sumOfSpecial += 30;
       break;
     case 'v2':
-      sum += 20;
+      sumOfSpecial += 20;
       break;
     case 'v3':
-      sum += 10;
+      sumOfSpecial += 10;
       break;
     default:
       throw new Error('Something went wrong');
   }
 
   if (trula.napovedana) {
-    sum += 10;
+    sumOfSpecial += 10;
   } else if (trula.type) {
-    sum += 20;
+    sumOfSpecial += 20;
   }
 
   if (zadnjiKralj.napovedan) {
-    sum += 10;
+    sumOfSpecial += 10;
   } else if (zadnjiKralj.type) {
-    sum += 20;
+    sumOfSpecial += 20;
   }
 
   if (zadnjaPalcka.napovedana) {
-    sum += 25;
+    sumOfSpecial += 25;
   } else if (zadnjaPalcka.type) {
-    sum += 50;
+    sumOfSpecial += 50;
   }
 
   if (vsiKralji.type) {
-    sum += 10;
+    sumOfSpecial += 10;
   }
   //! vsi kralji napovedani????????
 
+  const zmagal = roundto5(cardPoints) > 35;
+  const razlika = 75 - cardPoints;
+  const sum = roundto5(razlika) + sumOfSpecial;
   let igralecPoints = sum;
   let soigralecPoints = sum;
-  const zmagal = roundto5(igralecPoints) > 35;
 
   if (izgubljeniMond && zmagal) igralecPoints = sum - 25;
   if (izgubljeniMond && !zmagal) igralecPoints = sum + 25;
 
   igralecPoints = roundto5(igralecPoints);
   soigralecPoints = roundto5(soigralecPoints);
-
 
   if (zmagal) {
     if (data.soigralec === '')

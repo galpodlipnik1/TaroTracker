@@ -79,6 +79,17 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
       setIsLoading(false);
       if (res) toast.success('Točke uspešno dodane!');
       else toast.error('Napaka pri dodajanju točk!');
+
+      setValue('igralec', '');
+      setValue('soigralec', '');
+      setValue('vrstaIgre', '');
+      setValue('stRazlike', '');
+      setValue('vsiKralji', '');
+      setValue('zadnjaPalcka', '');
+      setValue('trula', '');
+      setValue('zadnjiKralj', '');
+      setValue('zmagal', '');
+      setValue('izgubljeniMond', '');
     } else {
       toast.error(validated.error);
     }
@@ -121,6 +132,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
               <div className="flex flex-col md:flex-row w-full md:space-x-6">
                 <div className="w-full md:w-3/6">
                   <DropDown
+                    required
                     disabled={isLoading}
                     options={gameInfo?.players || []}
                     onChange={(value) => setValue('igralec', value)}
@@ -141,6 +153,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
               <div className="flex flex-col md:flex-row w-full md:mt-6 justify-between items-baseline">
                 <div className="w-full md:w-2/6">
                   <DropDown
+                    required
                     disabled={isLoading}
                     options={vrstaIgreOptions}
                     onChange={(value) => setValue('vrstaIgre', value)}
@@ -166,6 +179,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                   */}
                   <div className="w-full md:w-4/6">
                     <DropDown
+                      required
                       disabled={isLoading}
                       options={extraPointsOptions[0]['options']}
                       onChange={(value) => setValue('vsiKralji', value)}
@@ -182,6 +196,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                   */}
                   <div className="w-full md:w-4/6">
                     <DropDown
+                      required
                       disabled={isLoading}
                       options={extraPointsOptions[1]['options']}
                       onChange={(value) => setValue('zadnjaPalcka', value)}
@@ -200,6 +215,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                   */}
                   <div className="w-full md:w-4/6">
                     <DropDown
+                      required
                       disabled={isLoading}
                       options={extraPointsOptions[2]['options']}
                       onChange={(value) => setValue('trula', value)}
@@ -216,6 +232,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                   */}
                   <div className="w-full md:w-4/6">
                     <DropDown
+                      required
                       disabled={isLoading}
                       options={extraPointsOptions[3]['options']}
                       onChange={(value) => setValue('zadnjiKralj', value)}
@@ -234,6 +251,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     */}
                   <div className="w-full md:w-4/6">
                     <DropDown
+                      required
                       disabled={isLoading}
                       options={extraPointsOptions[4]['options']}
                       onChange={(value) => setValue('zmagal', value)}
@@ -250,6 +268,7 @@ const PointsPage = ({ params }: { params: { id: string } }) => {
                     */}
                   <div className="w-full md:w-4/6">
                     <DropDown
+                      required
                       disabled={isLoading}
                       options={extraPointsOptions[5]['options']}
                       onChange={(value) => setValue('izgubljeniMond', value)}

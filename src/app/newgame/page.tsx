@@ -80,6 +80,7 @@ const NewGamePage = () => {
                   Igralec 1
                 </label>
                 <input
+                  required
                   name="player1"
                   type="text"
                   className="w-5/6 h-10 bg-pallet4 text-black font-bold text-2xl"
@@ -91,6 +92,7 @@ const NewGamePage = () => {
                   Igralec 2
                 </label>
                 <input
+                  required
                   name="player2"
                   type="text"
                   className="w-5/6 h-10 bg-pallet4 text-black font-bold text-2xl"
@@ -104,6 +106,7 @@ const NewGamePage = () => {
                   Igralec 3
                 </label>
                 <input
+                  required
                   name="player3"
                   type="text"
                   className="w-5/6 h-10 bg-pallet4 text-black font-bold text-2xl"

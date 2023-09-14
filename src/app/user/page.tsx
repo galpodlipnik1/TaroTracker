@@ -92,7 +92,10 @@ const User = () => {
                 </CardFooter>
                 {game.status === 'inactive' && (
                   <CardFooter>
-                    <button className="w-full bg-pallete4 text-pallete text-xl font-bold py-2 rounded-md hover:bg-pallete2 hover:text-pallete4 transition duration-300 ease-in-out" onClick={() => handleSetActive(game.id, game.name)}>
+                    <button
+                      className="w-full bg-pallete4 text-pallete text-xl font-bold py-2 rounded-md hover:bg-pallete2 hover:text-pallete4 transition duration-300 ease-in-out"
+                      onClick={() => handleSetActive(game.id, game.name)}
+                    >
                       Set active
                     </button>
                   </CardFooter>
