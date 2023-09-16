@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/prismadb';
 
-const getCurrentGameInfo = async (gameId: string) => {
+const getCurrentGameInfo = async (gameId: string | undefined) => {
   try {
     const gameInfo = await prisma.game.findUnique({
       where: { id: gameId },

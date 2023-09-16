@@ -97,6 +97,19 @@ const TopBar = ({ children }: { children: React.ReactNode }) => {
                 </li>
                 <li>
                   <a
+                    href="/change"
+                    className={clsx(
+                      'block py-2 pl-3 pr-4 rounded md:p-0 hover:text-pallete border-gray-700 text-2xl',
+                      pathname === '/leaderboard'
+                        ? 'text-pallete3'
+                        : 'text-white'
+                    )}
+                  >
+                    Spremeni točke
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="/leaderboard"
                     className={clsx(
                       'block py-2 pl-3 pr-4 rounded md:p-0 hover:text-pallete border-gray-700 text-2xl',
@@ -179,6 +192,17 @@ const TopBar = ({ children }: { children: React.ReactNode }) => {
                   )}
                 >
                   Dodaj točke
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/change"
+                  className={clsx(
+                    'block py-2 pl-3 pr-4 rounded border-gray-700 text-2xl',
+                    pathname === '/leaderboard' ? 'text-pallete3' : 'text-white'
+                  )}
+                >
+                  Spremeni točke
                 </a>
               </li>
               <li>

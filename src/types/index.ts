@@ -13,3 +13,10 @@ export interface GameInfo {
   createdAt: Date;
   scores: Score[];
 }
+
+export interface ChangeScore {
+  id: string | undefined;
+  playerName: string;
+  newScore: number;
+  changeLast: boolean;
+}
