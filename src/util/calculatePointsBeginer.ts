@@ -110,6 +110,10 @@ export const calculatePointsBeginner = (
   if (vsiKralji.type) {
     sumOfSpecial += 10;
   }
+
+  if (vsiKralji.noben) {
+    sumOfSpecial -= 10; //! ali je to pravilno?
+  }
   //! vsi kralji napovedani????????
 
   const zmagal = roundto5(cardPoints) > 35;

@@ -54,6 +54,10 @@ export const calculatePointsAdvanced = (data: FormatedData) => {
   if (vsiKralji.type) {
     sumOfPoints += 10;
   }
+
+  if (vsiKralji.noben) {
+    sumOfPoints -= 10; //! ali je to pravilno?
+  }
   //! vsi kralji napovedani????????
 
   sumOfPoints += stRazlike;

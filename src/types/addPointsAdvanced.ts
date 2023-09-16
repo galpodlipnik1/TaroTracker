@@ -18,7 +18,7 @@ export interface FormatedData {
   stRazlike: number;
   zmagal: boolean;
   izgubljeniMond: boolean;
-  vsiKralji: { type: boolean; napovedani: boolean };
+  vsiKralji: { type: boolean; napovedani: boolean, noben: boolean };
   zadnjaPalcka: { type: boolean; napovedana: boolean };
   trula: { type: boolean; napovedana: boolean };
   zadnjiKralj: { type: boolean; napovedan: boolean };

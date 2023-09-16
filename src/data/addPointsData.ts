@@ -3,7 +3,7 @@ const vrstaIgreOptions = ['v 1', 'v 2', 'v 3'];
 const extraPointsOptions = [
   {
     name: 'vsiKralji',
-    options: ['Ne', 'Da', 'Napovedani'],
+    options: ['Ne', 'Da', 'Napovedani', 'Noben'],
   },
   {
     name: 'zadnjaPalcka',
