@@ -34,7 +34,6 @@ const formatData = (data: SubmitData) => {
         : data.vsiKralji.value === 'Noben'
         ? { type: false, napovedani: false, noben: true }
         : { type: false, napovedani: false, noben: false },
-
   };
 
   return formatedData;

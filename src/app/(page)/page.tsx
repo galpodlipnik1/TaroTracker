@@ -80,16 +80,28 @@ const LandingPage = () => {
               isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-2'
             } duration-500 space-y-2 my-8`}
           >
-            <Card className="w-full md:w-5/12 h-7/12 bg-white">
+            <Card className="w-full md:w-5/12 h-7/12">
               <CardHeader className="px-4">
-                <CardTitle>How can I contribute?</CardTitle>
+                <CardTitle>Offical rules</CardTitle>
               </CardHeader>
               <CardContent className="px-4">
                 <CardDescription>
-                  taro track is currently not an open source project at the
-                  moment but that might change in the future.
+                  The official rules of tarok can be found the link below.
                 </CardDescription>
               </CardContent>
+              <CardFooter>
+                <div className="w-full flex justify-end">
+                  <button
+                    className="bg-pallete3 text-white rounded-md px-4 py-2 hover:bg-pallete4 hover:text-pallete1"
+                    onClick={() =>
+                      (location.href =
+                        'https://www.pagat.com/tarot/sltarok.html')
+                    }
+                  >
+                    Rules
+                  </button>
+                </div>
+              </CardFooter>
             </Card>
 
             <Card className="w-full md:w-5/12 h-58">

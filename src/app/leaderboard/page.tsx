@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+
 import DisplayBoard from './components/displayBoard';
 
 const Leaderboard = () => {

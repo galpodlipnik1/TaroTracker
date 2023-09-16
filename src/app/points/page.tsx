@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import getActiveGame from '@/actions/getActiveGame';
+import { CircleLoader } from 'react-spinners';
 import { useRouter } from 'next/navigation';
 
 const Points = () => {
@@ -15,7 +16,7 @@ const Points = () => {
 
   return (
     <div className="w-screen h-screen bg-pallete flex justify-center items-center text-5xl text-pallete4">
-      Redirecting...
+      <CircleLoader color="#a3c6c4" />
     </div>
   );
 };
